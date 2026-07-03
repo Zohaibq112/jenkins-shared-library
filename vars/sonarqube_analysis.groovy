@@ -7,7 +7,8 @@ def call(String sonarTool, String projectName, String projectKey) {
                 -Dsonar.organization=zohaibq112 \
                 -Dsonar.host.url=https://sonarcloud.io \
                 -Dsonar.sources=. \
-                -Dsonar.java.binaries=.
+                -Dsonar.java.binaries=. \
+                -Dsonar.scanner.skipJreProvisioning=true
         """
     }
 }
