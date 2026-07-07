@@ -2,9 +2,9 @@ def call(String url, String branch) {
     checkout([
         $class: 'GitSCM',
         branches: [[name: "*/${branch}"]],
-        userRemoteConfigs: [[
-            url: url,
-            credentialsId: 'Github-cred'
-        ]]
+        extensions: [
+            [$class: 'CloneOption', shallow: true, depth: 1, noTags: true, timeout: 30]
+        ],
+        userRemoteConfigs: [[url: url, credentialsId: 'Github-cred']]
     ])
 }
