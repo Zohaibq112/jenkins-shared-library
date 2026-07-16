@@ -1,13 +1,15 @@
 def call() {
     try {
-        timeout(time: 1, unit: 'HOURS') {
+        timeout(time: 2, unit: 'MINUTES') {
             def qg = waitForQualityGate()
             if (qg.status != 'OK') {
-                echo "WARNING: SonarQube Quality Gate failed: ${qg.status}"
+                echo "WARNING: Quality Gate status: ${qg.status}"
+            } else {
+                echo "Quality Gate passed!"
             }
         }
     } catch (Exception e) {
-        echo "WARNING: Could not check Quality Gate status: ${e.message}"
-        echo "Continuing pipeline..."
+        echo "WARNING: Quality Gate check failed: ${e.message}"
+        echo "Continuing pipeline anyway..."
     }
 }
